@@ -1,0 +1,8 @@
+{
+  "name": "AureviaWeb",
+  "description": "Premium Digital Studio Website & Client Acquisition Platform",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

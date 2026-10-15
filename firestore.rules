@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Everything is readable by public except private data
+    match /{document=**} {
+      allow read: if true;
+      allow write: if isSignedIn();
+    }
+    
+    // Protect specific collections
+    match /leads/{leadId} {
+      allow create: if true;
+      allow read, update, delete: if isSignedIn();
+    }
+    
+    match /notifications/{notificationId} {
+      allow read, write: if isSignedIn();
+    }
+    
+    match /activity/{activityId} {
+      allow read, write: if isSignedIn();
+    }
+    
+    match /admin_users/{userId} {
+      allow read, write: if isSignedIn();
+    }
+  }
+}
